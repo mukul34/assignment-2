@@ -1,0 +1,17 @@
+<div class="table-responsive">
+  <table class=" table  table-striped ">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let header of headers">{{ header.label }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of data">
+        <td *ngFor="let header of headers">
+          {{ record[header.key] }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+ 

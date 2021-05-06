@@ -1,0 +1,121 @@
+<form [formGroup]="user" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="">Name</label>
+    <input type="text" class="form-control" formControlName="name" />
+    <span  *ngIf="user.get('name').touched && user.get('name').hasError('required')"   >Name is Required</span>
+    <span  *ngIf=" user.get('name').hasError('minlength')"   >Name should contain atleast 2 characters</span>
+    <span  *ngIf="  user.get('name').hasError('maxlength')"   >Name can only have a maximum of 30 characters</span>
+    <span  *ngIf=" user.get('name').hasError('pattern')"   >Name should not contain any numbers or special characters</span>
+
+
+  </div>
+  <div class="form-group">
+    <label for="">Email</label>
+    <input type="email" class="form-control" formControlName="email" />
+    <span  *ngIf="user.get('email').touched && user.get('email').hasError('required')">Email is required</span>
+    <span  *ngIf=" user.get('email').hasError('email')">Please enter a valid email</span>
+
+
+    
+  </div>
+  <div class="form-group">
+    <label for="">Mobile Number</label>
+    <input type="tel" class="form-control" formControlName="mobile" />
+    <span  *ngIf="user.get('mobile').touched && user.get('mobile').hasError('required')">Mobile number is required</span>
+    <span  *ngIf="user.get('mobile').hasError('pattern')">Please Enter a valid Indian number</span>
+
+
+    
+  </div>
+  <div class="form-group">
+    <label for="">Gender</label>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        value="male"
+        checked
+        formControlName="gender"
+      />
+      <label class="form-check-label" for="exampleRadios1"> Male </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        value="female"
+        checked
+        formControlName="gender"
+      />
+      <label class="form-check-label" for="exampleRadios1"> Female </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="">Technology</label>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="C"
+        
+        (change)="checking($event.target.value)"
+      />
+      <label class="form-check-label">
+        C
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="C++"
+        (change)="checking($event.target.value)"
+        
+      />
+      <label class="form-check-label">
+        C++
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="Python"
+        (change)="checking($event.target.value)"
+        
+      />
+      <label class="form-check-label">
+        Python
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="Javascript"
+        (change)="checking($event.target.value)"
+        
+      />
+      <label class="form-check-label">
+        Javascript
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <label>Category</label>
+      <select class="form-control" formControlName="category">
+          <option value="General">General</option>
+          <option value="OBC">OBC</option>
+          <option value="SC/ST">SC/ST</option>
+
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="!user.valid" (click)="toggleModal()" class="btn btn-warning">Preview</button>
+
+</form>
+
+
+<app-modal (close)="toggleModal()" *ngIf="showModal" [data]="userData"></app-modal>

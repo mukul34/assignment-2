@@ -1,0 +1,32 @@
+.navbar-light {
+  background-color: #09d3ee;
+}
+
+.navbar-nav.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+nav {
+  min-height: 5vh;
+  z-index:10;
+  
+}
+ul li {
+  margin: 2rem;
+}
+
+ul li a {
+  font-weight: 600;
+  font-size: large;
+  z-index:2;
+}
+
+.logo {
+  max-height: 2.5rem;
+}
+
+.active {
+  border-bottom: 1px solid black;
+}
